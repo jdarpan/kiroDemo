@@ -1,0 +1,66 @@
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.account-table thead {
+  background-color: #f8f9fa;
+}
+
+.account-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #2c3e50;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.account-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 14px;
+  color: #495057;
+}
+
+.account-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.account-table input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.flag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.flag.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.comments {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+}

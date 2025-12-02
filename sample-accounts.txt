@@ -1,0 +1,11 @@
+accountNumber|holderName|bankName|balance|lastTransactionDate
+ACC123456|John Smith|Chase Bank|15000.50|2019-03-15
+ACC789012|Mary Johnson|Wells Fargo|8500.00|2018-11-20
+ACC345678|Robert Brown|Bank of America|22000.75|2017-06-10
+ACC901234|Patricia Davis|Chase Bank|5500.00|2020-01-05
+ACC567890|Michael Wilson|Citibank|12000.00|2019-08-22
+ACC234567|Linda Martinez|Wells Fargo|9800.50|2018-04-18
+ACC678901|James Anderson|Bank of America|18500.00|2017-12-30
+ACC012345|Barbara Taylor|Chase Bank|7200.00|2020-05-12
+ACC456789|William Thomas|Citibank|14500.75|2019-02-28
+ACC890123|Elizabeth Moore|Wells Fargo|11000.00|2018-09-15

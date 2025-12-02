@@ -1,0 +1,51 @@
+accountNumber|holderName|bankName|balance|lastTransactionDate
+ACC0000001|James Smith|Chase Bank|15234.50|2018-03-15
+ACC0000002|Mary Johnson|Wells Fargo|8765.25|2017-11-20
+ACC0000003|John Williams|Bank of America|22450.75|2016-06-10
+ACC0000004|Patricia Brown|Citibank|5890.00|2019-01-05
+ACC0000005|Robert Jones|US Bank|12340.00|2018-08-22
+ACC0000006|Jennifer Garcia|PNC Bank|9876.50|2017-04-18
+ACC0000007|Michael Miller|Capital One|18500.00|2016-12-30
+ACC0000008|Linda Davis|TD Bank|7234.00|2019-05-12
+ACC0000009|William Rodriguez|Fifth Third Bank|14567.75|2018-02-28
+ACC0000010|Barbara Martinez|Regions Bank|11234.00|2017-09-15
+ACC0000011|David Hernandez|Chase Bank|19876.50|2016-07-22
+ACC0000012|Elizabeth Lopez|Wells Fargo|6543.25|2019-03-08
+ACC0000013|Richard Gonzalez|Bank of America|13456.00|2018-11-14
+ACC0000014|Susan Wilson|Citibank|8901.75|2017-05-19
+ACC0000015|Joseph Anderson|US Bank|16789.50|2016-09-25
+ACC0000016|Jessica Thomas|PNC Bank|10234.00|2019-06-30
+ACC0000017|Thomas Taylor|Capital One|21567.25|2018-01-17
+ACC0000018|Sarah Moore|TD Bank|7890.50|2017-10-11
+ACC0000019|Charles Jackson|Fifth Third Bank|15678.00|2016-04-28
+ACC0000020|Karen Martin|Regions Bank|9012.75|2019-02-14
+ACC0000021|Christopher Lee|Chase Bank|12345.50|2018-07-03
+ACC0000022|Nancy Perez|Wells Fargo|18901.25|2017-12-19
+ACC0000023|Daniel Thompson|Bank of America|6789.00|2016-08-05
+ACC0000024|Lisa White|Citibank|14567.75|2019-04-21
+ACC0000025|Matthew Harris|US Bank|9876.50|2018-10-16
+ACC0000026|Betty Sanchez|PNC Bank|22345.00|2017-06-12
+ACC0000027|Anthony Clark|Capital One|8123.25|2016-11-28
+ACC0000028|Margaret Ramirez|TD Bank|16890.50|2019-07-09
+ACC0000029|Mark Lewis|Fifth Third Bank|11234.75|2018-03-24
+ACC0000030|Sandra Robinson|Regions Bank|19567.00|2017-08-30
+ACC0000031|Donald Walker|Chase Bank|7456.25|2016-05-15
+ACC0000032|Ashley Young|Wells Fargo|13789.50|2019-01-20
+ACC0000033|Steven Allen|Bank of America|10123.00|2018-09-06
+ACC0000034|Kimberly King|Citibank|21456.75|2017-04-22
+ACC0000035|Paul Wright|US Bank|8901.50|2016-10-18
+ACC0000036|Emily Scott|PNC Bank|15678.25|2019-06-03
+ACC0000037|Andrew Torres|Capital One|12890.00|2018-02-17
+ACC0000038|Donna Nguyen|TD Bank|19234.75|2017-11-13
+ACC0000039|Joshua Hill|Fifth Third Bank|6789.50|2016-07-29
+ACC0000040|Michelle Flores|Regions Bank|14012.25|2019-03-15
+ACC0000041|Kevin Green|Chase Bank|11567.00|2018-08-01
+ACC0000042|Amanda Adams|Wells Fargo|18234.50|2017-05-27
+ACC0000043|Brian Nelson|Bank of America|9456.75|2016-12-12
+ACC0000044|Melissa Baker|Citibank|16789.25|2019-08-08
+ACC0000045|George Hall|US Bank|7890.00|2018-04-23
+ACC0000046|Stephanie Rivera|PNC Bank|13456.50|2017-10-19
+ACC0000047|Edward Campbell|Capital One|20123.75|2016-06-05
+ACC0000048|Rebecca Mitchell|TD Bank|8567.25|2019-02-20
+ACC0000049|Ronald Carter|Fifth Third Bank|15234.00|2018-11-06
+ACC0000050|Laura Roberts|Regions Bank|10890.50|2017-07-22

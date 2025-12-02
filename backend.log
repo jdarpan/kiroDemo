@@ -1,0 +1,4 @@
+Starting Spring Boot Backend...
+Backend will be available at: http://localhost:8080
+
+./mvnw: line 2: exec: mvn: not found
