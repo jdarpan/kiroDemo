@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
+import { useToast } from '../context/ToastContext';
 import './Login.css';
 
 /**
@@ -9,6 +10,7 @@ import './Login.css';
  */
 const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
+  const toast = useToast();
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -68,6 +70,8 @@ const Login = ({ onLoginSuccess }) => {
     
     // Validate form
     if (!validateForm()) {
+      // Requirements: 1.2 - Display validation errors inline
+      toast.warning('Please fill in all required fields');
       return;
     }
 
@@ -78,6 +82,9 @@ const Login = ({ onLoginSuccess }) => {
       // Call login API
       const response = await login(formData.username, formData.password);
       
+      // Requirements: 1.2 - Display success message
+      toast.success('Login successful! Welcome back.');
+      
       // Call success callback if provided
       if (onLoginSuccess) {
         onLoginSuccess(response);
@@ -86,8 +93,10 @@ const Login = ({ onLoginSuccess }) => {
       // Redirect to dashboard on success
       navigate('/');
     } catch (error) {
-      // Display error message
-      setErrorMessage(error.message || 'Invalid username or password');
+      // Requirements: 1.2, 9.4 - Display error message
+      const errorMsg = error.message || 'Invalid username or password';
+      setErrorMessage(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }

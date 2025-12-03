@@ -318,7 +318,7 @@
     - Display error messages
     - _Requirements: 1.1, 1.2_
   
-  - [-] 16.2 Create authentication service
+  - [ ] 16.2 Create authentication service
     - Implement login() function
     - Implement logout() function
     - Implement token storage and retrieval
@@ -337,15 +337,15 @@
     - Test successful login redirect
     - _Requirements: 1.1, 1.2_
 
-- [ ] 17. Implement Dashboard component
-  - [ ] 17.1 Create Dashboard layout
+- [x] 17. Implement Dashboard component
+  - [x] 17.1 Create Dashboard layout
     - Build dashboard structure with summary cards
     - Display total account count
     - Display bank summaries with counts and balances
     - Add loading and error states
     - _Requirements: 3.1, 3.2, 3.3_
   
-  - [ ] 17.2 Implement data fetching
+  - [x] 17.2 Implement data fetching
     - Create API service methods for accounts and summaries
     - Fetch data on component mount
     - Implement refresh functionality
@@ -355,22 +355,22 @@
     - **Property 12: Form displays current account data**
     - **Validates: Requirements 5.1**
 
-- [ ] 18. Implement SearchBar component
+- [x] 18. Implement SearchBar component
   - Create search input field
   - Implement onChange handler with debouncing
   - Implement clear search functionality
   - Pass search term to parent component
   - _Requirements: 4.1, 4.3_
 
-- [ ] 19. Implement AccountTable component
-  - [ ] 19.1 Create table structure
+- [x] 19. Implement AccountTable component
+  - [x] 19.1 Create table structure
     - Build table with columns for all account fields
     - Implement row selection with checkboxes
     - Add sort functionality for columns
     - Display account data from props
     - _Requirements: 3.1, 4.2_
   
-  - [ ] 19.2 Implement selection logic
+  - [x] 19.2 Implement selection logic
     - Handle single row selection
     - Handle bulk selection (select all)
     - Track selected account IDs in state
@@ -382,15 +382,15 @@
     - Test sorting
     - _Requirements: 3.1, 6.1_
 
-- [ ] 20. Implement UpdateModal component
-  - [ ] 20.1 Create modal form
+- [x] 20. Implement UpdateModal component
+  - [x] 20.1 Create modal form
     - Build form with fields for reclaim status, dates, and comments
     - Implement form validation
     - Display current account values
     - Add save and cancel buttons
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
   
-  - [ ] 20.2 Implement update logic
+  - [x] 20.2 Implement update logic
     - Handle single account update
     - Handle bulk account update
     - Validate date relationships
@@ -405,8 +405,8 @@
     - Test update submission
     - _Requirements: 5.2, 10.2_
 
-- [ ] 21. Implement FileUpload component (Admin only)
-  - [ ] 21.1 Create file upload UI
+- [x] 21. Implement FileUpload component (Admin only)
+  - [x] 21.1 Create file upload UI
     - Build file input with drag-and-drop
     - Display selected filename
     - Add upload button
@@ -414,7 +414,7 @@
     - Display upload results
     - _Requirements: 7.1, 7.4_
   
-  - [ ] 21.2 Implement upload logic
+  - [x] 21.2 Implement upload logic
     - Validate file selection
     - Call upload API endpoint
     - Handle upload response
@@ -428,14 +428,14 @@
     - Test error handling
     - _Requirements: 7.1, 7.5_
 
-- [ ] 22. Implement Reports component
-  - [ ] 22.1 Create reports UI
+- [x] 22. Implement Reports component
+  - [x] 22.1 Create reports UI
     - Build filter form for export criteria
     - Add export button
     - Display export status
     - _Requirements: 11.1_
   
-  - [ ] 22.2 Implement CSV export logic
+  - [x] 22.2 Implement CSV export logic
     - Apply filters from form
     - Call export API endpoint
     - Trigger file download
@@ -447,7 +447,7 @@
     - Test export trigger
     - _Requirements: 11.2_
 
-- [ ] 23. Implement API service layer
+- [x] 23. Implement API service layer
   - Create axios instance with base URL and interceptors
   - Add request interceptor to attach JWT token
   - Add response interceptor to handle 401 errors
@@ -455,27 +455,27 @@
   - Handle network errors gracefully
   - _Requirements: 9.2, 9.5_
 
-- [ ] 24. Implement role-based UI rendering
+- [x] 24. Implement role-based UI rendering
   - Create useAuth hook to get current user role
   - Conditionally render FileUpload component for Admin only
   - Hide/show UI elements based on role
   - _Requirements: 2.1, 2.2, 2.3_
 
-- [ ] 25. Add styling and responsive design
+- [x] 25. Add styling and responsive design
   - Style all components with CSS
   - Ensure responsive layout for mobile and desktop
   - Add loading spinners and animations
   - Implement consistent color scheme and typography
   - _Requirements: 3.1_
 
-- [ ] 26. Implement error handling and user feedback
+- [x] 26. Implement error handling and user feedback
   - Display toast notifications for success/error messages
   - Show loading states during API calls
   - Handle network errors with retry options
   - Display validation errors inline
   - _Requirements: 1.2, 7.5, 9.4_
 
-- [ ] 27. Checkpoint - Ensure all frontend tests pass
+- [x] 27. Checkpoint - Ensure all frontend tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ]* 28. Write integration tests
@@ -486,5 +486,5 @@
   - Use Testcontainers for PostgreSQL
   - _Requirements: 1.1, 4.1, 5.2, 7.3, 11.2_
 
-- [ ] 29. Final checkpoint - Ensure all tests pass
+- [x] 29. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.

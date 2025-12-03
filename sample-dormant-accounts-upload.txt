@@ -1,0 +1,21 @@
+AccountNumber|CustomerName|BankName|Balance|CustomerEmail
+ACC016789012|William Garcia|First National Bank|8900.00|wgarcia@email.com
+ACC017890123|Elizabeth Rodriguez|City Trust Bank|14200.50|erodriguez@email.com
+ACC018901234|Richard Martinez|Metro Bank|27500.00|rmartinez@email.com
+ACC019012345|Susan Hernandez|Coastal Bank|6300.75|shernandez@email.com
+ACC020123456|Thomas Lopez|First National Bank|18900.00|tlopez@email.com
+ACC021234567|Jessica Gonzalez|City Trust Bank|9800.25|jgonzalez@email.com
+ACC022345678|Charles Wilson|Metro Bank|33000.00|cwilson@email.com
+ACC023456789|Nancy Anderson|Coastal Bank|4500.00|nanderson@email.com
+ACC024567890|Kevin Thomas|First National Bank|21000.00|kthomas@email.com
+ACC025678901|Karen Taylor|City Trust Bank|12600.50|ktaylor@email.com
+ACC026789012|Steven Moore|Metro Bank|15800.00|smoore@email.com
+ACC027890123|Betty Jackson|Coastal Bank|7200.00|bjackson@email.com
+ACC028901234|Edward Martin|First National Bank|19500.00|emartin@email.com
+ACC029012345|Dorothy Lee|City Trust Bank|11300.75|dlee@email.com
+ACC030123456|Brian Perez|Metro Bank|24000.00|bperez@email.com
+ACC031234567|Helen Thompson|Coastal Bank|5900.00|hthompson@email.com
+ACC032345678|Ronald White|First National Bank|16700.50|rwhite@email.com
+ACC033456789|Sandra Harris|City Trust Bank|28500.00|sharris@email.com
+ACC034567890|Anthony Sanchez|Metro Bank|9100.00|asanchez@email.com
+ACC035678901|Ashley Clark|Coastal Bank|13400.25|aclark@email.com

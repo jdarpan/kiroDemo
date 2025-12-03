@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
@@ -7,62 +7,95 @@ import SearchBar from './components/SearchBar';
 import AccountTable from './components/AccountTable';
 import UpdateModal from './components/UpdateModal';
 import FileUpload from './components/FileUpload';
+import Reports from './components/Reports';
 import PrivateRoute from './components/PrivateRoute';
+import ErrorBoundary from './components/ErrorBoundary';
+import ToastContainer from './components/ToastContainer';
+import LoadingSpinner from './components/LoadingSpinner';
+import { ToastProvider, useToast } from './context/ToastContext';
 import { searchAccounts, updateAccount, bulkUpdateAccounts } from './services/api';
-import { initializeAuth, logout, getCurrentUser } from './services/authService';
+import { initializeAuth, logout } from './services/authService';
+import useAuth from './hooks/useAuth';
 
 // Main application component with authentication
 function MainApp() {
   const navigate = useNavigate();
+  const toast = useToast();
   const [currentView, setCurrentView] = useState('dashboard');
   const [accounts, setAccounts] = useState([]);
   const [selectedAccounts, setSelectedAccounts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+
+  // Use the useAuth hook to get current user information
+  // Requirements: 2.1, 2.2, 2.3
+  const { user: currentUser, isAdmin } = useAuth();
 
   useEffect(() => {
     // Initialize authentication on mount
     initializeAuth();
-    setCurrentUser(getCurrentUser());
+  }, []);
+
+  const loadAccounts = useCallback(async (query = '') => {
+    setLoading(true);
+    try {
+      const data = await searchAccounts(query);
+      setAccounts(data);
+    } catch (error) {
+      // Requirements: 9.4 - Display error messages
+      toast.error('Error loading accounts: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (currentView === 'accounts') {
       loadAccounts();
     }
-  }, [currentView]);
+  }, [currentView, loadAccounts]);
 
-  const loadAccounts = async (query = '') => {
-    setLoading(true);
-    try {
-      const data = await searchAccounts(query);
-      setAccounts(data);
-    } catch (error) {
-      alert('Error loading accounts: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = (query) => {
+  const handleSearch = useCallback((query) => {
     loadAccounts(query);
-  };
+  }, [loadAccounts]);
 
   const handleUpdate = async (updateData) => {
     try {
       if (selectedAccounts.length === 1) {
-        await updateAccount(selectedAccounts[0], updateData);
+        // Single account update
+        const updatedAccount = await updateAccount(selectedAccounts[0], updateData);
+        setShowModal(false);
+        setSelectedAccounts([]);
+        await loadAccounts(); // Refresh account list
+        // Requirements: 1.2, 9.4 - Display success toast
+        toast.success('Account updated successfully!');
+        return updatedAccount;
       } else {
-        await bulkUpdateAccounts(selectedAccounts, updateData);
+        // Bulk account update
+        const updatedCount = await bulkUpdateAccounts(selectedAccounts, updateData);
+        setShowModal(false);
+        setSelectedAccounts([]);
+        await loadAccounts(); // Refresh account list
+        // Requirements: 1.2, 9.4 - Display success toast
+        toast.success(`${updatedCount} account(s) updated successfully!`);
+        return updatedCount;
       }
-      setShowModal(false);
-      setSelectedAccounts([]);
-      loadAccounts();
-      alert('Update successful!');
     } catch (error) {
-      alert('Error updating accounts: ' + error.message);
+      // Extract error message from response if available
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to update accounts';
+      // Requirements: 9.4 - Display error toast
+      toast.error('Error updating accounts: ' + errorMessage);
+      throw error; // Re-throw to let modal handle it
     }
+  };
+
+  // Get the selected account object for single account updates
+  const getSelectedAccount = () => {
+    if (selectedAccounts.length === 1) {
+      return accounts.find(acc => acc.id === selectedAccounts[0]);
+    }
+    return null;
   };
 
   const handleLogout = async () => {
@@ -87,6 +120,12 @@ function MainApp() {
           >
             Manage Accounts
           </button>
+          <button 
+            className={currentView === 'reports' ? 'active' : ''}
+            onClick={() => setCurrentView('reports')}
+          >
+            Reports
+          </button>
           <div className="user-info">
             {currentUser && (
               <>
@@ -101,9 +140,12 @@ function MainApp() {
       <main className="App-main">
         {currentView === 'dashboard' ? (
           <Dashboard onNavigateToAccounts={() => setCurrentView('accounts')} />
+        ) : currentView === 'reports' ? (
+          <Reports />
         ) : (
           <>
-            <FileUpload onUploadComplete={loadAccounts} />
+            {/* Only show FileUpload component for Admin users - Requirements: 2.1, 2.2, 2.3 */}
+            {isAdmin && <FileUpload onUploadComplete={loadAccounts} />}
             
             <SearchBar onSearch={handleSearch} />
             
@@ -118,7 +160,7 @@ function MainApp() {
             </div>
 
             {loading ? (
-              <div className="loading">Loading...</div>
+              <LoadingSpinner message="Loading accounts..." />
             ) : (
               <AccountTable 
                 accounts={accounts}
@@ -135,6 +177,7 @@ function MainApp() {
           onClose={() => setShowModal(false)}
           onSubmit={handleUpdate}
           accountCount={selectedAccounts.length}
+          selectedAccount={getSelectedAccount()}
         />
       )}
     </div>
@@ -148,20 +191,24 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-        <Route 
-          path="/*" 
-          element={
-            <PrivateRoute>
-              <MainApp />
-            </PrivateRoute>
-          } 
-        />
-        <Route path="/" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </Router>
+    <ErrorBoundary>
+      <ToastProvider>
+        <Router>
+          <ToastContainer />
+          <Routes>
+            <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+            <Route 
+              path="/" 
+              element={
+                <PrivateRoute>
+                  <MainApp />
+                </PrivateRoute>
+              } 
+            />
+          </Routes>
+        </Router>
+      </ToastProvider>
+    </ErrorBoundary>
   );
 }
 

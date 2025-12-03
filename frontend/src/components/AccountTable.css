@@ -1,55 +1,119 @@
 .table-container {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   overflow-x: auto;
+  animation: fadeIn var(--transition-slow);
 }
 
 .account-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 1000px;
 }
 
 .account-table thead {
-  background-color: #f8f9fa;
+  background-color: var(--bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .account-table th {
-  padding: 12px;
+  padding: var(--spacing-lg);
   text-align: left;
   font-weight: 600;
   font-size: 13px;
-  color: #2c3e50;
-  border-bottom: 2px solid #e9ecef;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.account-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.account-table th.sortable:hover {
+  background-color: var(--gray-200);
+  color: var(--primary-color);
+}
+
+.account-table th.sortable::after {
+  content: '⇅';
+  margin-left: var(--spacing-xs);
+  opacity: 0.3;
+  font-size: 12px;
+}
+
+.account-table th.sortable:hover::after {
+  opacity: 0.7;
 }
 
 .account-table td {
-  padding: 12px;
-  border-bottom: 1px solid #e9ecef;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
   font-size: 14px;
-  color: #495057;
+  color: var(--text-primary);
+}
+
+.account-table tbody tr {
+  transition: all var(--transition-fast);
 }
 
 .account-table tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--bg-tertiary);
+  transform: scale(1.001);
+}
+
+.account-table tbody tr.selected {
+  background-color: rgba(52, 152, 219, 0.1);
 }
 
 .account-table input[type="checkbox"] {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
 }
 
-.flag {
-  padding: 4px 8px;
-  border-radius: 4px;
+.status-badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+  letter-spacing: 0.3px;
+  transition: all var(--transition-base);
 }
 
-.flag.active {
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.status-badge.in_progress {
+  background-color: #cfe2ff;
+  color: #084298;
+  border: 1px solid #9ec5fe;
+}
+
+.status-badge.completed {
   background-color: #d4edda;
   color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-badge.failed {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
 .comments {
@@ -61,6 +125,47 @@
 
 .no-data {
   text-align: center;
-  padding: 40px;
-  color: #7f8c8d;
+  padding: var(--spacing-4xl);
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .account-table {
+    min-width: 900px;
+  }
+
+  .comments {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-table {
+    min-width: 800px;
+  }
+
+  .account-table th,
+  .account-table td {
+    padding: var(--spacing-md);
+    font-size: 13px;
+  }
+
+  .comments {
+    max-width: 100px;
+  }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-table th,
+  .account-table td {
+    padding: var(--spacing-sm);
+    font-size: 12px;
+  }
 }
