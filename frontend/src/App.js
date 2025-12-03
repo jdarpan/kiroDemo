@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
+import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import SearchBar from './components/SearchBar';
 import AccountTable from './components/AccountTable';
 import UpdateModal from './components/UpdateModal';
 import FileUpload from './components/FileUpload';
+import PrivateRoute from './components/PrivateRoute';
 import { searchAccounts, updateAccount, bulkUpdateAccounts } from './services/api';
+import { initializeAuth, logout, getCurrentUser } from './services/authService';
 
-function App() {
+// Main application component with authentication
+function MainApp() {
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState('dashboard');
   const [accounts, setAccounts] = useState([]);
   const [selectedAccounts, setSelectedAccounts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    // Initialize authentication on mount
+    initializeAuth();
+    setCurrentUser(getCurrentUser());
+  }, []);
 
   useEffect(() => {
     if (currentView === 'accounts') {
@@ -52,6 +65,11 @@ function App() {
     }
   };
 
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -69,6 +87,14 @@ function App() {
           >
             Manage Accounts
           </button>
+          <div className="user-info">
+            {currentUser && (
+              <>
+                <span className="username">{currentUser.username} ({currentUser.role})</span>
+                <button className="btn-logout" onClick={handleLogout}>Logout</button>
+              </>
+            )}
+          </div>
         </nav>
       </header>
       
@@ -112,6 +138,30 @@ function App() {
         />
       )}
     </div>
+  );
+}
+
+// App wrapper with routing
+function App() {
+  const handleLoginSuccess = () => {
+    // Navigation will be handled by the router
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route 
+          path="/*" 
+          element={
+            <PrivateRoute>
+              <MainApp />
+            </PrivateRoute>
+          } 
+        />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
   );
 }
 

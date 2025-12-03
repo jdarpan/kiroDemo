@@ -1,25 +1,28 @@
 spring:
-  application:
-    name: dormant-accounts-service
-  
-  # Database Configuration
+  # H2 Database Configuration
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/dormant_accounts}
-    username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:dormant_accounts;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
   
-  # JPA Configuration
+  # JPA Configuration for H2
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+  
+  # H2 Console
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   
   # SQL Initialization
   sql:
@@ -28,20 +31,7 @@ spring:
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
       continue-on-error: false
-      platform: postgresql
-  
-  # H2 Console (for development/testing)
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
-# Server Configuration
-server:
-  port: 8080
-  error:
-    include-message: always
-    include-binding-errors: always
+      platform: h2
 
 # CORS Configuration
 cors:
@@ -56,7 +46,7 @@ jwt:
   expiration: ${JWT_EXPIRATION:3600000}
   issuer: dormant-accounts-service
 
-# Logging Configuration
+# Logging
 logging:
   level:
     com.bank.dormant: DEBUG

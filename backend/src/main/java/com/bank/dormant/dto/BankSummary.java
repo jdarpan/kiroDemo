@@ -1,11 +1,27 @@
 package com.bank.dormant.dto;
 
-public class BankSummary {
-    private String bankName;
-    private Long accountCount;
-    private Double totalBalance;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 
-    public BankSummary(String bankName, Long accountCount, Double totalBalance) {
+/**
+ * DTO for bank summary data
+ * Requirements: 9.5, 10.3
+ */
+public class BankSummary {
+    @NotBlank(message = "Bank name is required")
+    private String bankName;
+    
+    @NotNull(message = "Account count is required")
+    @PositiveOrZero(message = "Account count must be zero or positive")
+    private Long accountCount;
+    
+    @NotNull(message = "Total balance is required")
+    @PositiveOrZero(message = "Total balance must be zero or positive")
+    private BigDecimal totalBalance;
+
+    public BankSummary(String bankName, Long accountCount, BigDecimal totalBalance) {
         this.bankName = bankName;
         this.accountCount = accountCount;
         this.totalBalance = totalBalance;
@@ -27,11 +43,11 @@ public class BankSummary {
         this.accountCount = accountCount;
     }
 
-    public Double getTotalBalance() {
+    public BigDecimal getTotalBalance() {
         return totalBalance;
     }
 
-    public void setTotalBalance(Double totalBalance) {
+    public void setTotalBalance(BigDecimal totalBalance) {
         this.totalBalance = totalBalance;
     }
 }

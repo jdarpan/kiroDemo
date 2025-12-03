@@ -19,7 +19,37 @@
 .nav-tabs {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+  position: relative;
+}
+
+.user-info {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  font-size: 14px;
+  color: #ecf0f1;
+}
+
+.btn-logout {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b;
 }
 
 .nav-tabs button {

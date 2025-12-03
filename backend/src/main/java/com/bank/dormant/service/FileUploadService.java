@@ -64,12 +64,12 @@ public class FileUploadService {
         
         DormantAccount account = new DormantAccount();
         account.setAccountNumber(parts[0].trim());
-        account.setAccountHolderName(parts[1].trim());
+        account.setCustomerName(parts[1].trim());
         account.setBankName(parts[2].trim());
-        account.setBalance(Double.parseDouble(parts[3].trim()));
+        account.setBalance(new java.math.BigDecimal(parts[3].trim()));
         
         if (parts.length > 4 && !parts[4].trim().isEmpty()) {
-            account.setLastTransactionDate(LocalDate.parse(parts[4].trim(), DateTimeFormatter.ISO_DATE));
+            account.setCustomerEmail(parts[4].trim());
         }
         
         return account;
