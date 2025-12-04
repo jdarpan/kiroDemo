@@ -1,0 +1,39 @@
+[Unit]
+Description=Dormant Accounts Management Backend Service
+Documentation=https://github.com/your-repo/dormant-accounts
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/dormant-accounts
+
+# Environment configuration
+Environment="SPRING_PROFILES_ACTIVE=prod"
+EnvironmentFile=/opt/dormant-accounts/.env
+
+# JVM Options (adjust based on your server resources)
+Environment="JAVA_OPTS=-Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+
+# Start command
+ExecStart=/usr/bin/java ${JAVA_OPTS} -jar /opt/dormant-accounts/dormant-accounts-1.0.0.jar
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=append:/opt/dormant-accounts/logs/application.log
+StandardError=append:/opt/dormant-accounts/logs/error.log
+SyslogIdentifier=dormant-accounts
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
